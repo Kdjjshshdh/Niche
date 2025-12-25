@@ -28,6 +28,20 @@
   </div>
 <audio src="audio/new.mp3" autoplay loop hidden></audio>
 <audio src="audio/new.mp3" autoplay hidden></audio>
+<audio id="bgm" src="audio/new.mp3" autoplay loop playsinline muted></audio>
+<script>
+const audio=document.getElementById("bgm");
+function tryPlay(){
+ audio.play().then(()=>{
+   setTimeout(()=>{audio.muted=false;audio.volume=1.0;},500);
+ }).catch(()=>{
+   document.body.addEventListener("click",()=>{audio.muted=false;audio.play();},{once:true});
+   document.body.addEventListener("touchstart",()=>{audio.muted=false;audio.play();},{once:true});
+ });
+}
+document.addEventListener("DOMContentLoaded",tryPlay);
+</script>
+
 </body>
 
 </html>
